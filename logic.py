@@ -19,10 +19,12 @@ def hangman():
     word_letters = list(word)
     close_word = len(word)*'_'
     used_letters = set(' ')
+    all_letters = []
     attempt = 6
     os.system('cls')
 
     while attempt > 0:
+        print('Ukraine version\n')
         print(f'Your word is {close_word.upper()} | try to guess '
         + str(close_word.count('_')) + ' letters.')
         print(f'You have an {attempt} attempts.')
@@ -30,15 +32,22 @@ def hangman():
         answer = input('Guess the letter: ').lower()
         os.system('cls')
         used_letters.add(answer.upper())
+        all_letters.append(answer.upper())
+
+        for k, v in enumerate(word_letters):
+            if v == answer:
+                tpm = list(close_word)
+                tpm[k] = v
+                close_word = ''.join(tpm)
 
         if answer in word_letters:
-            for k, v in enumerate(word_letters):
-                if v == answer:
-                    tpm = list(close_word)
-                    tpm[k] = v
-                    close_word = ''.join(tpm)
+            print(f'You guess the letter \'{answer.upper()}\'\n')
         elif answer not in word_letters:
             attempt -=1
+
+        if all_letters.count(answer.upper()) > 1 and answer not in word_letters:
+            print('You already use this word.\n')
+            attempt += 1
 
         if close_word.count('_') == 0:
             print('You WIN!')
