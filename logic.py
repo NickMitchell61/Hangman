@@ -61,18 +61,18 @@ def hangman():
             print(f'Your word is {word.upper()} | you didn\'t guess '
             + str(close_word.count('_')) + ' letters out of ' + str(len(close_word)) + '.')
 
-    print(game := input('Do you want to play again?[Y(yes)/N(No)]: '))
+    print(game := input('Do you want to play again?[Т(так)/Н(Ні)]: '))
 
     while attempt == 0:
-        if game.lower() == 'y':
+        if game.lower() == 'т':
             attempt = 6
             return hangman()
-        if game.lower() == 'n':
+        if game.lower() == 'н':
             print('Goodbye!')
             break
-        while game.lower != 'y' or game.lower != 'n':
-            print('You must enter only \'Y\' or \'N\' ')
-            print(game:= input('Do you want to play again?[Y/N]: '))
+        while game.lower != 'т' or game.lower != 'н':
+            print('You must enter only \'Т\' or \'Н\' ')
+            print(game:= input('Do you want to play again?[Т/Н]: '))
             break
 
 hangman()
